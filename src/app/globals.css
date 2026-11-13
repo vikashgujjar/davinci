@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────────────────────
+   DaVinci design system
+   Two-colour identity: Electric Blue + Deep Indigo.
+   ────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Brand */
+  --color-electric: #087bee;
+  --color-electric-600: #0667cc;
+  --color-electric-300: #6fb3f7;
+  --color-deep: #17104f;
+  --color-night: #0d0936; /* deepest indigo for dark sections */
+  --color-night-2: #120c45;
+
+  /* Neutrals */
+  --color-ink: #111827;
+  --color-muted: #64748b;
+  --color-mist: #f7f8fc;
+  --color-sky: #eaf2ff;
+  --color-line: #e3e8f2;
+  --color-danger: #b42318; /* form validation only */
+
+  /* Shadows */
+  --shadow-soft: 0 1px 2px rgb(23 16 79 / 0.04), 0 8px 24px -12px rgb(23 16 79 / 0.12);
+  --shadow-float: 0 2px 4px rgb(23 16 79 / 0.04), 0 24px 60px -24px rgb(23 16 79 / 0.28);
+  --shadow-glow: 0 0 0 1px rgb(8 123 238 / 0.35), 0 12px 40px -10px rgb(8 123 238 / 0.45);
+
+  /* Motion */
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Type scale extras */
+  --text-display: clamp(2.75rem, 6.4vw, 5.6rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+  --text-headline: clamp(2.1rem, 4.2vw, 3.6rem);
+  --text-headline--line-height: 1.06;
+  --text-headline--letter-spacing: -0.03em;
+
+  --animate-dash: dash-flow 3s linear infinite;
+  --animate-spin-slow: spin 24s linear infinite;
+  --animate-spin-slower: spin 60s linear infinite;
+  --animate-drift: drift 28s ease-in-out infinite alternate;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+  --animate-scan: scan 4.5s var(--ease-expo) infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes dash-flow {
+    to {
+      stroke-dashoffset: -40;
+    }
+  }
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-3%, 2%, 0);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+  }
+  @keyframes scan {
+    0% {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+    15% {
+      opacity: 1;
+    }
+    85% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(110%);
+      opacity: 0;
+    }
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Layout utilities */
+@utility container-x {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 6rem;
+  @media (width >= 48rem) {
+    padding-block: 8rem;
+  }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(100deg, var(--color-electric) 10%, var(--color-deep) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-light {
+  background-image: linear-gradient(100deg, #ffffff 20%, var(--color-electric-300) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility mask-fade-y {
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
+}
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 72%);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(8 123 238 / 0.18);
+    color: var(--color-deep);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-electric);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
