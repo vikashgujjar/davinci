@@ -48,15 +48,23 @@ export function HeroSection() {
         initial={{ opacity: 0, y: -12 }}
         animate={done ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
-        className="container-x mb-10 flex items-center justify-center gap-4 md:mb-12 md:gap-6"
+        className="container-x mb-10 flex flex-col items-center text-center md:mb-12"
       >
-        <span aria-hidden className="hidden h-px w-16 bg-gradient-to-r from-transparent to-electric/60 sm:block md:w-24" />
-        <blockquote className="text-center font-display text-[15px] font-medium leading-snug tracking-tight text-deep/80 md:text-lg">
-          <span aria-hidden className="mr-1 text-electric">&ldquo;</span>
-          Precision in every point. <span className="text-gradient font-semibold">Intelligence</span> in every line.
-          <span aria-hidden className="ml-1 text-electric">&rdquo;</span>
+        <blockquote className="font-display text-[15px] font-medium leading-snug tracking-tight text-deep/80 md:text-lg">
+          <span className="sm:block">
+            <span aria-hidden className="mr-0.5 text-electric">&ldquo;</span>
+            The future of innovation begins when <span className="text-gradient font-semibold">imagination</span>{" "}
+          </span>
+          <span className="sm:block">
+            refuses to accept limitations.
+            <span aria-hidden className="ml-0.5 text-electric">&rdquo;</span>
+          </span>
         </blockquote>
-        <span aria-hidden className="hidden h-px w-16 bg-gradient-to-l from-transparent to-electric/60 sm:block md:w-24" />
+        <figcaption className="mt-3 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-electric">
+          <span aria-hidden className="h-px w-8 bg-electric/60" />
+          Leonardo da Vinci
+          <span aria-hidden className="h-px w-8 bg-electric/60" />
+        </figcaption>
       </motion.figure>
 
       <div className="container-x grid items-center gap-16 lg:grid-cols-[1.08fr_1fr] lg:gap-12">
