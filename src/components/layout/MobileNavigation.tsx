@@ -5,11 +5,11 @@ import { ArrowUpRight, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
 import { buttonClass } from "@/components/ui/Button";
-import { navLinks, site } from "@/lib/site";
+import { navLinks, resolveHref, site } from "@/lib/site";
 
-type Props = { open: boolean; onClose: () => void; active: string };
+type Props = { open: boolean; onClose: () => void; active: string; onHome: boolean };
 
-export function MobileNavigation({ open, onClose, active }: Props) {
+export function MobileNavigation({ open, onClose, active, onHome }: Props) {
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export function MobileNavigation({ open, onClose, active }: Props) {
           role="dialog"
           aria-modal="true"
           aria-label="Site navigation"
-          className="fixed inset-0 z-[60] flex flex-col bg-white lg:hidden"
+          className="fixed inset-0 z-[60] flex flex-col bg-white xl:hidden"
           initial={{ clipPath: "circle(0% at calc(100% - 44px) 40px)" }}
           animate={{ clipPath: "circle(150% at calc(100% - 44px) 40px)" }}
           exit={{ clipPath: "circle(0% at calc(100% - 44px) 40px)" }}
@@ -66,7 +66,7 @@ export function MobileNavigation({ open, onClose, active }: Props) {
                   variants={{ hidden: { opacity: 0, x: 24 }, show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } } }}
                 >
                   <a
-                    href={link.href}
+                    href={resolveHref(link.href, onHome)}
                     onClick={onClose}
                     className={`flex items-baseline justify-between py-4 font-display text-2xl font-semibold tracking-tight transition-colors ${
                       active === link.href ? "text-electric" : "text-deep"
@@ -85,7 +85,7 @@ export function MobileNavigation({ open, onClose, active }: Props) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0, transition: { delay: 0.55 } }}
           >
-            <a href="#contact" onClick={onClose} className={buttonClass("primary", "lg", "w-full")}>
+            <a href={resolveHref("#contact", onHome)} onClick={onClose} className={buttonClass("primary", "lg", "w-full")}>
               Book a Demo <ArrowUpRight className="size-4" aria-hidden />
             </a>
             <p className="mt-4 text-center text-xs text-muted">{site.contact.email}</p>

@@ -1,6 +1,9 @@
 import Image from "next/image";
 import logo from "../../../public/davinci-logo.png";
 
+/** Width ÷ height of the approved logo file. */
+export const LOGO_RATIO = logo.width / logo.height;
+
 type Props = {
   className?: string;
   priority?: boolean;
@@ -14,7 +17,7 @@ type Props = {
  * must always sit on a light surface.
  */
 export function Logo({ className = "", priority = false, height = 40 }: Props) {
-  const width = Math.round((logo.width / logo.height) * height);
+  const width = Math.round(LOGO_RATIO * height);
   return (
     <Image
       src={logo}

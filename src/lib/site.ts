@@ -30,8 +30,14 @@ export const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
   { label: "About Us", href: "#about" },
   { label: "FAQ", href: "#faq" },
+  { label: "Essential Documents", href: "/documents" },
   { label: "Contact", href: "#contact" },
 ] as const;
+
+/** Homepage section links ("#faq") must point back to "/" when used on other pages. */
+export function resolveHref(href: string, onHome: boolean) {
+  return href.startsWith("#") && !onHome ? `/${href}` : href;
+}
 
 /** Company-provided performance claims. Do not add to these. */
 export const claims = {

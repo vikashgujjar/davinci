@@ -35,13 +35,29 @@ export function HeroSection() {
   const state = done ? "show" : "hidden";
 
   return (
-    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-white pb-24 pt-32 md:pb-32 md:pt-40">
+    <section id="home" aria-labelledby="hero-title" className="relative isolate overflow-hidden bg-white pb-24 pt-28 md:pb-32 md:pt-32">
       {/* Background system */}
       <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_20%,#eaf2ff_0%,transparent_60%),radial-gradient(50%_50%_at_0%_100%,#f7f8fc_0%,transparent_70%)]" />
       <SurveyGridBackground className="-z-10" />
       <Parallax offset={60} className="-z-10">
         <TopographicBackground density="high" />
       </Parallax>
+
+      {/* Brand quote */}
+      <motion.figure
+        initial={{ opacity: 0, y: -12 }}
+        animate={done ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.9, ease: EASE, delay: 0.15 }}
+        className="container-x mb-10 flex items-center justify-center gap-4 md:mb-12 md:gap-6"
+      >
+        <span aria-hidden className="hidden h-px w-16 bg-gradient-to-r from-transparent to-electric/60 sm:block md:w-24" />
+        <blockquote className="text-center font-display text-[15px] font-medium leading-snug tracking-tight text-deep/80 md:text-lg">
+          <span aria-hidden className="mr-1 text-electric">&ldquo;</span>
+          Precision in every point. <span className="text-gradient font-semibold">Intelligence</span> in every line.
+          <span aria-hidden className="ml-1 text-electric">&rdquo;</span>
+        </blockquote>
+        <span aria-hidden className="hidden h-px w-16 bg-gradient-to-l from-transparent to-electric/60 sm:block md:w-24" />
+      </motion.figure>
 
       <div className="container-x grid items-center gap-16 lg:grid-cols-[1.08fr_1fr] lg:gap-12">
         <motion.div initial="hidden" animate={state} variants={container}>

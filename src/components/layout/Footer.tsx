@@ -2,7 +2,7 @@ import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
 import { Logo } from "@/components/brand/Logo";
-import { navLinks, site } from "@/lib/site";
+import { navLinks, resolveHref, site } from "@/lib/site";
 
 async function getYear() {
   "use cache";
@@ -42,7 +42,7 @@ export async function Footer() {
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7">
             <FooterCol title="Navigate">
               {navLinks.map((l) => (
-                <FooterLink key={l.href} href={`/${l.href}`}>
+                <FooterLink key={l.href} href={resolveHref(l.href, false)}>
                   {l.label}
                 </FooterLink>
               ))}
