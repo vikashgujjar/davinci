@@ -4,12 +4,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SurveyGridBackground } from "@/components/backgrounds/SurveyGridBackground";
 import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
+import { Photo } from "@/components/ui/Photo";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { buttonClass } from "@/components/ui/Button";
 import { Reveal, RevealItem, Stagger } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { documentCategories, documents, type DocumentCategory, type EssentialDocument } from "@/lib/documents";
+import { images } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Essential Documents",
@@ -34,24 +36,29 @@ export default function DocumentsPage() {
           <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(70%_60%_at_80%_20%,#eaf2ff_0%,transparent_60%)]" />
           <SurveyGridBackground className="-z-10" markers={false} />
           <TopographicBackground className="-z-10" animated={false} />
-          <div className="container-x">
-            <SectionHeading
-              id="documents-title"
-              eyebrow="Resources"
-              title={"Essential\nDocuments."}
-              highlight={["Documents"]}
-              description="Company, product, security and legal documents for DaVinci, all in one place. Need something you can't find here? Our team is happy to help."
-            />
-            <Reveal delay={0.2} className="mt-10 flex flex-wrap gap-2">
-              {documentCategories.map(({ name }) => (
-                <a
-                  key={name}
-                  href={`#${name.toLowerCase()}`}
-                  className="rounded-full border border-deep/10 bg-white/80 px-4 py-2 text-[13px] font-medium text-deep/80 backdrop-blur transition hover:border-electric/50 hover:text-electric"
-                >
-                  {name}
-                </a>
-              ))}
+          <div className="container-x grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
+            <div>
+              <SectionHeading
+                id="documents-title"
+                eyebrow="Resources"
+                title={"Essential\nDocuments."}
+                highlight={["Documents"]}
+                description="Company, product, security and legal documents for DaVinci, all in one place. Need something you can't find here? Our team is happy to help."
+              />
+              <Reveal delay={0.2} className="mt-10 flex flex-wrap gap-2">
+                {documentCategories.map(({ name }) => (
+                  <a
+                    key={name}
+                    href={`#${name.toLowerCase()}`}
+                    className="rounded-full border border-deep/10 bg-white/80 px-4 py-2 text-[13px] font-medium text-deep/80 backdrop-blur transition hover:border-electric/50 hover:text-electric"
+                  >
+                    {name}
+                  </a>
+                ))}
+              </Reveal>
+            </div>
+            <Reveal delay={0.1}>
+              <Photo image={images.surveyMap} priority sizes="(min-width: 1024px) 600px, 100vw" className="aspect-[4/3] rounded-[28px] shadow-float" />
             </Reveal>
           </div>
         </section>

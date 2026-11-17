@@ -1,6 +1,7 @@
 import { BrainCircuit, CircleGauge, Cog, Layers3, Rocket, TrendingDown } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
+import { Photo } from "@/components/ui/Photo";
+import { images } from "@/lib/images";
 import { RevealItem, Stagger } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -87,8 +88,9 @@ function FeatureTile({ feature, index }: { feature: Feature; index: number }) {
 
   if (variant === "hero") {
     return (
-      <article className="group relative isolate flex h-full min-h-[340px] flex-col justify-between overflow-hidden rounded-[28px] bg-gradient-to-br from-electric to-deep p-8 text-white transition-shadow duration-500 hover:shadow-glow sm:p-10">
-        <TopographicBackground tone="dark" className="-z-10 opacity-80 mix-blend-screen" />
+      <article className="group relative isolate flex h-full min-h-[340px] flex-col justify-between overflow-hidden rounded-[28px] bg-deep p-8 text-white transition-shadow duration-500 hover:shadow-glow sm:p-10">
+        <Photo image={images.totalStation} decorative sizes="(min-width: 1024px) 600px, 100vw" className="!absolute inset-0 -z-10" imgClassName="transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-105" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-deep via-deep/75 to-electric/30" />
         <span className="flex size-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-6">
           <Icon className="size-7" strokeWidth={1.5} aria-hidden />
         </span>

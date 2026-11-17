@@ -1,5 +1,6 @@
 import { Crosshair, PiggyBank, Timer } from "lucide-react";
-import { DigitalTerrainBackground } from "@/components/backgrounds/DigitalTerrainBackground";
+import { Photo } from "@/components/ui/Photo";
+import { images } from "@/lib/images";
 import { SurveyGridBackground } from "@/components/backgrounds/SurveyGridBackground";
 import { Counter } from "@/components/ui/Counter";
 import { Reveal } from "@/components/ui/Reveal";
@@ -27,7 +28,8 @@ export function BenefitsSection() {
         <div className="mt-16 grid gap-5 lg:grid-cols-12 lg:grid-rows-2">
           {/* 75% — dominant */}
           <Reveal className="group relative isolate overflow-hidden rounded-[28px] bg-deep p-8 text-white sm:p-12 lg:col-span-7 lg:row-span-2">
-            <DigitalTerrainBackground className="-z-10 h-2/3 opacity-90 transition-opacity duration-700 group-hover:opacity-100" />
+            <Photo image={images.topoRiver} decorative sizes="(min-width: 1024px) 700px, 100vw" className="!absolute inset-0 -z-10" imgClassName="opacity-45 transition-transform duration-[1.2s] ease-[var(--ease-expo)] group-hover:scale-105" />
+            <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-br from-deep via-deep/85 to-deep/40" />
             <div aria-hidden className="absolute -right-24 -top-24 -z-10 size-80 rounded-full bg-electric/40 blur-[100px]" />
             <div className="flex items-center gap-3 text-electric-300">
               <PiggyBank className="size-5" strokeWidth={1.75} aria-hidden />

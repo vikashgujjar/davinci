@@ -1,9 +1,11 @@
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { AINetworkBackground } from "@/components/backgrounds/AINetworkBackground";
 import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
+import { Photo } from "@/components/ui/Photo";
 import { buttonClass } from "@/components/ui/Button";
 import { Parallax } from "@/components/ui/Parallax";
 import { Reveal, SplitHeading } from "@/components/ui/Reveal";
+import { images } from "@/lib/images";
 
 export function CTASection() {
   return (
@@ -12,7 +14,9 @@ export function CTASection() {
         <Parallax offset={50} className="-z-10">
           <TopographicBackground tone="dark" density="high" />
         </Parallax>
-        <AINetworkBackground tone="dark" count={34} seed={77} className="-z-10 opacity-50 mask-radial" />
+        <AINetworkBackground tone="dark" count={34} seed={77} className="-z-10 opacity-40 mask-radial" />
+        <Photo image={images.droneSunset} decorative sizes="100vw" className="!absolute inset-0 -z-10" imgClassName="opacity-40" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-b from-deep/70 via-deep/80 to-deep" />
         <div aria-hidden className="absolute -bottom-40 left-1/2 -z-10 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-electric/50 blur-[140px]" />
         <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-electric-300/70 to-transparent" />
 

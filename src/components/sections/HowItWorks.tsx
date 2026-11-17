@@ -3,78 +3,16 @@
 import { motion, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 import { TopographicBackground } from "@/components/backgrounds/TopographicBackground";
+import { Photo } from "@/components/ui/Photo";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { images, type SiteImage } from "@/lib/images";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
-
-const steps = [
-  {
-    title: "Input Survey Data",
-    body: "Survey information enters the DaVinci workflow.",
-    art: (
-      <g>
-        {[0, 1, 2, 3].map((i) => (
-          <g key={i}>
-            <rect x="8" y={10 + i * 15} width="104" height="11" rx="3" fill={i === 1 ? "#eaf2ff" : "#f7f8fc"} />
-            <rect x="14" y={14 + i * 15} width="22" height="3" rx="1.5" fill="#17104f" fillOpacity="0.55" />
-            <rect x="44" y={14 + i * 15} width="28" height="3" rx="1.5" fill="#64748b" fillOpacity="0.4" />
-            <rect x="80" y={14 + i * 15} width="24" height="3" rx="1.5" fill="#64748b" fillOpacity="0.4" />
-          </g>
-        ))}
-      </g>
-    ),
-  },
-  {
-    title: "AI Processing",
-    body: "DaVinci processes the information through its intelligent drafting workflow.",
-    art: (
-      <g transform="translate(60 37)">
-        <circle r="28" fill="none" stroke="#087bee" strokeOpacity="0.3" strokeDasharray="2 4" />
-        <rect x="-15" y="-15" width="30" height="30" rx="6" fill="#17104f" />
-        {[-8, 0, 8].map((o) => (
-          <g key={o} stroke="#17104f" strokeOpacity="0.4">
-            <line x1={o} y1="-15" x2={o} y2="-22" />
-            <line x1={o} y1="15" x2={o} y2="22" />
-            <line x1="-15" y1={o} x2="-22" y2={o} />
-            <line x1="15" y1={o} x2="22" y2={o} />
-          </g>
-        ))}
-        <circle r="5" fill="#087bee" />
-      </g>
-    ),
-  },
-  {
-    title: "Automated Drafting",
-    body: "The system helps transform processed information into organized drafting outputs.",
-    art: (
-      <g>
-        <path d="M20 18 L92 10 L104 56 L36 66 Z" fill="#087bee" fillOpacity="0.06" stroke="#17104f" strokeWidth="1.4" strokeLinejoin="round" strokeDasharray="200" className="motion-safe:animate-[draw_3s_ease-in-out_infinite_alternate]" />
-        {[
-          [20, 18],
-          [92, 10],
-          [104, 56],
-          [36, 66],
-        ].map(([x, y]) => (
-          <circle key={`${x}${y}`} cx={x} cy={y} r="2.5" fill="#fff" stroke="#087bee" strokeWidth="1.4" />
-        ))}
-        <path d="M30 40 q 15 -12 30 0 t 30 0" fill="none" stroke="#087bee" strokeOpacity="0.4" />
-      </g>
-    ),
-  },
-  {
-    title: "Ready Deliverables",
-    body: "Survey professionals receive structured drafting deliverables for their workflow.",
-    art: (
-      <g>
-        <rect x="26" y="6" width="62" height="64" rx="4" fill="#fff" stroke="#17104f" strokeOpacity="0.15" transform="rotate(-6 57 38)" />
-        <rect x="32" y="8" width="62" height="64" rx="4" fill="#fff" stroke="#17104f" strokeOpacity="0.2" />
-        <path d="M40 22 L70 18 L78 42 L46 48 Z" fill="none" stroke="#17104f" strokeWidth="1.2" />
-        <rect x="40" y="56" width="30" height="4" rx="2" fill="#17104f" fillOpacity="0.25" />
-        <circle cx="92" cy="60" r="11" fill="#087bee" />
-        <path d="M87 60 l3.5 3.5 l6 -7" fill="none" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-    ),
-  },
+const steps: { title: string; body: string; image: SiteImage }[] = [
+  { title: "Input Survey Data", body: "Survey information enters the DaVinci workflow.", image: images.gnssRover },
+  { title: "AI Processing", body: "DaVinci processes the information through its intelligent drafting workflow.", image: images.aiProcessing },
+  { title: "Automated Drafting", body: "The system helps transform processed information into organized drafting outputs.", image: images.laptopDrawing },
+  { title: "Ready Deliverables", body: "Survey professionals receive structured drafting deliverables for their workflow.", image: images.topoMap },
 ];
 
 export function HowItWorks() {
@@ -111,7 +49,7 @@ export function HowItWorks() {
 
           <ol className="relative grid gap-12 lg:grid-cols-4 lg:gap-8">
             {steps.map((s, i) => (
-              <Step key={s.title} index={i} title={s.title} body={s.body} art={s.art} progress={progress} />
+              <Step key={s.title} index={i} title={s.title} body={s.body} image={s.image} progress={progress} />
             ))}
           </ol>
         </div>
@@ -124,13 +62,13 @@ function Step({
   index,
   title,
   body,
-  art,
+  image,
   progress,
 }: {
   index: number;
   title: string;
   body: string;
-  art: React.ReactNode;
+  image: SiteImage;
   progress: MotionValue<number>;
 }) {
   const threshold = index / 4 + 0.04;
@@ -157,10 +95,13 @@ function Step({
       </motion.span>
 
       <div className="lg:mt-8">
-        <div className="relative overflow-hidden rounded-2xl border border-deep/[0.07] bg-white/80 p-3 backdrop-blur transition-all duration-500 group-hover:-translate-y-1 group-hover:border-electric/30 group-hover:shadow-float">
-          <svg viewBox="0 0 120 76" className="h-24 w-full" aria-hidden>
-            {art}
-          </svg>
+        <div className="overflow-hidden rounded-2xl shadow-soft transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-float">
+          <Photo
+            image={image}
+            sizes="(min-width: 1024px) 280px, (min-width: 640px) 80vw, 100vw"
+            className="aspect-[4/3]"
+            imgClassName="transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
+          />
         </div>
         <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-electric">Step 0{index + 1}</p>
         <h3 className="mt-2 text-xl font-semibold tracking-tight text-deep">{title}</h3>

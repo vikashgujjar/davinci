@@ -45,6 +45,26 @@
   --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
   --animate-scan: scan 4.5s var(--ease-expo) infinite;
   --animate-marquee: marquee 40s linear infinite;
+  --animate-flow: flow 2.8s linear infinite;
+  --animate-twinkle: twinkle 2.6s ease-in-out infinite alternate;
+
+  /* light pulse travelling along a path with pathLength="100" */
+  @keyframes flow {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -100;
+    }
+  }
+  @keyframes twinkle {
+    from {
+      opacity: 0.6;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
   @keyframes dash-flow {
     to {
