@@ -56,10 +56,10 @@ export function Header() {
           <Link href={onHome ? "#home" : "/"} className="relative shrink-0 rounded-md" aria-label={onHome ? "DaVinci — back to top" : "DaVinci — home"}>
             {done ? (
               <motion.div layoutId="brand-logo" transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
-                <Logo height={LOGO_H} priority className="max-sm:w-[170px]!" />
+                <Logo height={LOGO_H} priority className="max-sm:w-[170px]! w-[220px]!" />
               </motion.div>
             ) : (
-              <div style={{ width: LOGO_W, height: LOGO_H }} className="max-sm:w-[170px]!" />
+              <div style={{ width: LOGO_W, height: LOGO_H }} className="max-sm:w-[170px]! w-[220px]!" />
             )}
           </Link>
 
