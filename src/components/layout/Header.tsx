@@ -53,7 +53,7 @@ export function Header() {
         }`}
       >
         <div className={`container-x flex items-center justify-between transition-[height] duration-500 ${scrolled ? "h-16" : "h-20"}`}>
-          {/* <Link href={onHome ? "#home" : "/"} className="relative shrink-0 rounded-md" aria-label={onHome ? "DaVinci — back to top" : "DaVinci — home"}>
+          <Link href={onHome ? "#home" : "/"} className="relative shrink-0 rounded-md" aria-label={onHome ? "DaVinci — back to top" : "DaVinci — home"}>
             {done ? (
               <motion.div layoutId="brand-logo" transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
                 <Logo height={LOGO_H} priority className="max-sm:w-[170px]! w-[220px]!" />
@@ -61,7 +61,7 @@ export function Header() {
             ) : (
               <div style={{ width: LOGO_W, height: LOGO_H }} className="max-sm:w-[170px]! w-[220px]!" />
             )}
-          </Link> */}
+          </Link>
 
           <nav aria-label="Primary" className="hidden xl:block">
             <ul className="flex items-center gap-1">
