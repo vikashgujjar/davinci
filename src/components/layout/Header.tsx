@@ -91,7 +91,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <a href={resolveHref("#contact", onHome)} className={buttonClass("primary", "md", "hidden sm:inline-flex")}>
+            <a href={resolveHref("#contact", onHome)} className={buttonClass("primary", "md", "max-sm:hidden")}>
               Book a Demo
               <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
             </a>
